@@ -39,18 +39,7 @@ class AppLayout extends StatelessWidget {
               builder: (context,snapshot){
                 if(snapshot.hasData){
                   List<ProductModel> products=snapshot.data!;
-                  return GridView.builder(
-                    itemCount: products.length,
-                      clipBehavior: Clip.none,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 1.3,
-                        crossAxisSpacing: 10,
-                        mainAxisExtent: 200,
-                      ),
-                      itemBuilder: (context, index) {
-                        return CustomCard(product: products[index],);
-                      });
+                  return Container();
                 }
                 else{
                   return Center(child: CircularProgressIndicator());
