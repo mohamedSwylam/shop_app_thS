@@ -2,7 +2,7 @@ class ProductModel {
   final int id;
   final String title;
   final String description;
-  final double price;
+  final dynamic price;
   final String image;
   final RatingModel rating;
 
@@ -18,8 +18,8 @@ class ProductModel {
     return ProductModel(
         id: json['id'],
         title: json['title'],
-        description: json['price'],
-        price: json['description'],
+        description: json['description'],
+        price: json['price'],
         image: json['image'],
         rating: RatingModel.fromJson(json['rating']),
     );
@@ -28,7 +28,7 @@ class ProductModel {
 
 class RatingModel {
   final int count;
-  final double rate;
+  final dynamic rate;
 
   RatingModel({required this.count, required this.rate});
 

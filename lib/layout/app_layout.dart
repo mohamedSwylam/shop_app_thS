@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shop_app_api_th_s/models/product_model.dart';
+import 'package:shop_app_api_th_s/services/get_all_products.dart';
 import 'package:shop_app_api_th_s/widget/custom_card.dart';
 
 import 'cubit/cubit.dart';
@@ -31,17 +33,30 @@ class AppLayout extends StatelessWidget {
             ],
           ),
           body: Padding(
-            padding: const EdgeInsets.only(left: 16.0,right: 16),
-            child: GridView.builder(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  childAspectRatio: 1.8,
-                  crossAxisSpacing: 10,
-                  mainAxisExtent: 100,
-                ),
-                itemBuilder: (context, index) {
-                  return CustomCard();
-                }),
+            padding: const EdgeInsets.only(left: 16.0,right: 16,top: 50),
+            child: FutureBuilder<List <ProductModel>>(
+              future: AllProductsService().getAllProducts(),
+              builder: (context,snapshot){
+                if(snapshot.hasData){
+                  List<ProductModel> products=snapshot.data!;
+                  return GridView.builder(
+                    itemCount: products.length,
+                      clipBehavior: Clip.none,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 1.3,
+                        crossAxisSpacing: 10,
+                        mainAxisExtent: 200,
+                      ),
+                      itemBuilder: (context, index) {
+                        return CustomCard(product: products[index],);
+                      });
+                }
+                else{
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
+            ),
           ),
         );
       },

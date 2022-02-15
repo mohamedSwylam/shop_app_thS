@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app_api_th_s/models/product_model.dart';
 
 class CustomCard extends StatelessWidget {
+  ProductModel product;
+
+  CustomCard({
+    required this.product,
+    Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +32,8 @@ class CustomCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(
-                      'Moza Swylam',
+                      product.title,
+                      maxLines: 1,
                       style: TextStyle(color: Colors.grey, fontSize: 18),
                     ),
                     SizedBox(height: 10,),
@@ -34,7 +41,7 @@ class CustomCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text('8568',
+                        Text('${product.price}',
                             style: TextStyle(
                                 color: Colors.grey, fontSize: 18)),
                         Spacer(),
@@ -53,8 +60,9 @@ class CustomCard extends StatelessWidget {
           bottom: 85,
           right: 32,
           child: Image.network(
-            'https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_.jpg',
+            '${product.image}',
             height: 100,
+            width: 100,
           ),
         ),
       ],
