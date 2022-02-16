@@ -45,14 +45,14 @@ class UpdateProductScreen extends StatelessWidget {
                   CustomTextField(
                     hintText: 'Description',
                     onChanged: (value){
-                      AppCubit.get(context).description=value;
+                      AppCubit.get(context).desc=value;
                     },
                   ),
                   SizedBox(height: 15,),
                   CustomTextField(
                     hintText: 'Price',
                     onChanged: (value){
-                      AppCubit.get(context).price=int.parse(value);
+                      AppCubit.get(context).price=value;
                     },
                   ),
                   SizedBox(height: 15,),

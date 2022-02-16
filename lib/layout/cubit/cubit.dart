@@ -13,18 +13,18 @@ class AppCubit extends Cubit<AppStates> {
   static AppCubit get(context) => BlocProvider.of(context);
 
   bool isLoading = false;
-  String? title,description,image;
-  int? price;
+  String? title,desc,image;
+  String? price;
 
    updateProduct (ProductModel product)  {
       isLoading = true;
       emit(UpdateProductInitialState());
       try {
-         UpdateProduct().updateProduct(
+         UpdateProductService().updateProduct(
             id: product.id,
             title: title == null ? product.title : title!,
-            price: price == null ? product.price : price!,
-            description: description == null ? product.description : description!,
+            price: price == null ? product.price.toString() : price!,
+             desc: desc == null ? product.description : desc!,
             image: image == null ? product.image : image!,
             category: product.category
         );
